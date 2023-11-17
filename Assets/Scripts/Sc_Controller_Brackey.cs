@@ -22,6 +22,9 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public bool isGrounded;
     public bool isJumping;
 
+    public bool playerLightOn;
+    public float playerLightEnergy;
+
 
 
 
@@ -37,10 +40,8 @@ public class Sc_Controller_Brackey : MonoBehaviour
         controller.Move(moveDirection * moveSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
 
         
-
         velocity.y = velocity.y + gravityForce * Time.deltaTime; //Simulation de la gravité 
         controller.Move(velocity * Time.deltaTime); //Son application sur le controller
-
 
 
         isGrounded = Physics.CheckSphere(groundCheck.position, sphereSize, groundMask);
@@ -48,22 +49,34 @@ public class Sc_Controller_Brackey : MonoBehaviour
         if (isGrounded && velocity.y < 0) //si on touche le sol
         {  
             velocity.y = -2f;
-
         }
-
-
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)) //on vérifie si le player est grounded quand il appuie sur l'input de saut
         {
-
            velocity.y = velocity.y + Mathf.Sqrt(JumpHeight * -2f * gravityForce); //on multiplie la hauteur du saut par (-2) et par la gravité
-
         }
     
 
+        while(playerLightOn == true)
+        {
+            playerLightEnergy -= Time.deltaTime;
+        }
+
+
+        if (playerLightEnergy < 0)
+        {
+            playerLightOn == false;
+
+        }
+
+
+
+
+
+
+
 
     }
-
 
 
 }
