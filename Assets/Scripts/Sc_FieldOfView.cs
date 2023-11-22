@@ -40,20 +40,21 @@ public class Sc_FieldOfView : MonoBehaviour
 
     private void FOVCheck()
     {
-        Collider[] rangeCheck = Physique.OverlapSphere(transform.position, fovRadius, targetMask); //On sait qu'il n'y a qu'un seul "player" donc la valeur va rester a 0
+        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, fovRadius, targetMask); //On sait qu'il n'y a qu'un seul "player" donc la valeur va rester a 0
 
-        if (rangeCheck.Length != 0) 
+        if (rangeCheck.Length != 0) // Si le tableau n'est pas vide
         {
-            Transform target = rangeChecks[0].transform; //On vérifie si on a dépassé la Length //(on a qu'une valeur) donc on ramene a 0 
-            Vector3 directionToTarget = (target.position - transform.position).normalized; //On sosutrait la position du joueur et la position de l'objet pour connaitre la plus courte distance
+            Transform playerTarget = rangeCheck[0].transform; //On regarde le 1e objet de la liste et on regarde son transform
+            Vector3 directionToTarget = (playerTarget.position - transform.position).normalized; //On soustrait la position du joueur et la position de l'objet pour connaitre la plus courte distance
 
-            if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2) //On vérifie si l'angle du FOV devant l'ennemi avec la distance la plus courte ??????????
+            if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2) //Ca compare l'angle de la position de l'ennemi et de la target et vï¿½rifie si la target dans le fov 
             {
-                float distanceToTarget = Vector3.Distance(transform.position, targetMask.position);
+                float distanceToTarget = Vector3.Distance(transform.position, playerTarget.position); // Envoie un float qui vÃ©rifie la distance centre l'ennemi et la targe
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask)) //Le "!" veut dire si on ne voit pas d'obstructionMask (mur) on voit le joueur
+                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) == false) //Le "!" veut dire si on ne voit pas d'obstructionMask (mur) on voit le joueur
                 {
                     canSeePlayer = true;
+                    Debug.Log("On voit le joueur");
                 }
                 else
                 {
@@ -66,7 +67,7 @@ public class Sc_FieldOfView : MonoBehaviour
                 canSeePlayer = false;
             }
         }
-        else if (canSeePlayer == true) //Si le joueur est rentrée dans la vue de l'ennemi et tu en est sorti
+        else if (canSeePlayer == true) //Si le joueur est rentrï¿½e dans la vue de l'ennemi et qu'il en est sorti
         {
             canSeePlayer = false;
         }

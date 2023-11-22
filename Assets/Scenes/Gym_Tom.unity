@@ -884,6 +884,7 @@ GameObject:
   - component: {fileID: 435079276}
   - component: {fileID: 435079279}
   - component: {fileID: 435079280}
+  - component: {fileID: 435079281}
   m_Layer: 9
   m_Name: Monster
   m_TagString: Untagged
@@ -949,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435079273}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.55, y: 1, z: 3.83}
+  m_LocalPosition: {x: -3.27, y: 1, z: 3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -987,19 +988,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435079273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aea7d401f07a8fb4c80bcc3402c948ca, type: 3}
+  m_Script: {fileID: 11500000, guid: c1d9f16664553824a9098bab496989d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints:
-  - {fileID: 817278515}
-  - {fileID: 576475159}
-  - {fileID: 1671545668}
-  - {fileID: 1804981638}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   targetPoint: 0
-  speed: 5
+  speed: 0
   goalCheck: {fileID: 703146700}
+  isPatrolling: 0
+  isWaiting: 0
+  isChasing: 0
+--- !u!114 &435079281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435079273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2f60ba5fb859c4695f15757ee4d024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fovRadius: 7
+  fovAngle: 90
+  playerRef: {fileID: 735241475}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  canSeePlayer: 0
 --- !u!1 &496789501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,7 +1698,7 @@ GameObject:
   - component: {fileID: 735241478}
   - component: {fileID: 735241480}
   - component: {fileID: 735241481}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GizmoCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2182,7 +2208,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2753,7 +2779,7 @@ GameObject:
   - component: {fileID: 1048235326}
   - component: {fileID: 1048235325}
   - component: {fileID: 1048235327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3410,7 +3436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555695628}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3431,6 +3457,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 735241478}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1556486415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556486416}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556486416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556486415}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.981115, y: -2.0719948, z: 10.015525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671545664
 GameObject:
@@ -4193,7 +4250,7 @@ GameObject:
   - component: {fileID: 1919294708}
   - component: {fileID: 1919294710}
   - component: {fileID: 1919294709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}

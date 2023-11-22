@@ -33,7 +33,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sc_Patrol : MonoBehaviour
+public class Sc_Guard : MonoBehaviour
 {
     public GameObject goFlag_A;
     public GameObject goFlag_B;
