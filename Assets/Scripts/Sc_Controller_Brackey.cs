@@ -65,7 +65,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
 
         if (playerLightEnergy < 0)
         {
-            playerLightOn == false;
+            
 
         }
 

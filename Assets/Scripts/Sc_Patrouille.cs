@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Sc_Patrouille : MonoBehaviour
 {
-
     public GameObject goFlag_A;
     public GameObject goFlag_B;
     public GameObject goFlag_C;
