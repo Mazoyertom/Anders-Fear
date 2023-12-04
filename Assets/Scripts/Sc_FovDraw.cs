@@ -4,14 +4,14 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(Sc_FieldOfView))]
-public class Sc_FovDraw : MonoBehaviour
+
+public class Sc_FovDraw : Editor
 {
     public Sc_FieldOfView scriptFOV;
     
-
-
     private void OnSceneGUI()
     {
+        FieldOfView fov = (FieldOfView) target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.fovRadius);
 
