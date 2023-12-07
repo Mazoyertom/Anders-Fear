@@ -21,7 +21,11 @@ public class Sc_Light : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Récupérer les inpput de la souris
+        // Lock le curseur au centre de l'Ã©cran et le rendre invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Rï¿½cupï¿½rer les inpput de la souris
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSensitivity;
 
