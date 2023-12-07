@@ -9,6 +9,7 @@ public class Sc_Patrol : MonoBehaviour
     public int targetPoint;
     public float speed;
     public GameObject goalCheck;
+    public float distanceToTargertPoint;
 
     public bool isPatrolling;
     public bool isWaiting;
@@ -25,7 +26,7 @@ public class Sc_Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
+        distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
         Debug.Log("Distance to target Point : " + distanceToTargertPoint);
 
         if (distanceToTargertPoint < 0.5f) //Si l'ennemi est suffisament proche, on lance le script
@@ -34,7 +35,7 @@ public class Sc_Patrol : MonoBehaviour
             increaseTargetInt();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime); //L'ennemi se déplace vers le Goal en prenant (sa position, la position de on but, sa vitesse)   
+        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime); //L'ennemi se dï¿½place vers le Goal en prenant (sa position, la position de on but, sa vitesse)   
 
     }
 
@@ -43,7 +44,7 @@ public class Sc_Patrol : MonoBehaviour
     {
         targetPoint++; //Loop qui passe a la valeur "suivante"
 
-        if (targetPoint >= patrolPoints.Length) //Si on atteint la fin (Length est la "longueur" de l'array) on retourne au début
+        if (targetPoint >= patrolPoints.Length) //Si on atteint la fin (Length est la "longueur" de l'array) on retourne au dï¿½but
         {
             targetPoint = 0;
         }
