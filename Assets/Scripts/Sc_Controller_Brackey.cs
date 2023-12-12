@@ -48,10 +48,13 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float crouchYScale;
     public float startYScale;
     private KeyCode crouchKey = KeyCode.E;
-    public float crouchTransitionSpeed = 10000f;
+    public float crouchTransitionSpeed = 10000000000000f;
     public LayerMask hidingZoneLayer;
     public float crouchDelta;
-    public bool aboveCheck;
+
+
+
+    public GameObject aboveCheck;
 
 
 
@@ -116,6 +119,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         if (Input.GetKeyDown(crouchKey))
         {
             isCrouching = true;
+            aboveCheck.GetComponent<Sc_AboveCheck>().isThereSomethingAbove = false;
         }
 
         if (isCrouching == true)
@@ -132,10 +136,16 @@ public class Sc_Controller_Brackey : MonoBehaviour
 
         if(isTryingToStand == true)
         {
-            if(!Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 3f) == false)
+            if(aboveCheck.GetComponent<Sc_AboveCheck>().isThereSomethingAbove == false)
             {
                 isTryingToStand = false;
                 isCrouching = false;
+            }
+            else
+            {
+                isTryingToStand = true;
+                isCrouching = false;
+                Debug.Log("Y'a un truc au dessus");
             }
         }
 
@@ -144,6 +154,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
             moveSpeed = walkingSpeed;
             isTryingToStand = false;
+            aboveCheck.GetComponent<Sc_AboveCheck>().isThereSomethingAbove = false;
         }
 
 

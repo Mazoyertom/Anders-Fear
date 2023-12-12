@@ -21,7 +21,7 @@ public class Sc_MousePosition : MonoBehaviour
     void Update()
     {
         screenPosition = Input.mousePosition;
-        screenPosition.z = Camera.main.nearClipPlane + 1;
+        screenPosition.z = Camera.main.nearClipPlane + 2;
 
 
         worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
