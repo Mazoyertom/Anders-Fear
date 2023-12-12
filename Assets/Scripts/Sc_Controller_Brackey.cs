@@ -15,7 +15,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public bool isGrounded;
     public bool isJumping;
     public bool isCrouching;
-    public bool isTryingToUncrouching;
+    public bool isTryingToStand;
 
 
     [Header("Mouvement")]
@@ -127,14 +127,14 @@ public class Sc_Controller_Brackey : MonoBehaviour
         //stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
-            isTryingToUncrouching = true;
+            isTryingToStand = true;
         }
 
-        if(isTryingToUncrouching == true)
+        if(isTryingToStand == true)
         {
             if(!Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 3f) == false)
             {
-                isTryingToUncrouching = false;
+                isTryingToStand = false;
                 isCrouching = false;
             }
         }
@@ -143,7 +143,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
             moveSpeed = walkingSpeed;
-            isTryingToUncrouching = false;
+            isTryingToStand = false;
         }
 
 
@@ -161,7 +161,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (isGrounded && !isCrouching && !isTryingToUncrouching && Input.GetKeyDown(KeyCode.Space)) //on vérifie si le player est grounded quand il appuie sur l'input de saut
+        if (isGrounded && !isCrouching && !isTryingToStand && Input.GetKeyDown(KeyCode.Space)) //on vérifie si le player est grounded quand il appuie sur l'input de saut
         {
             velocity.y = velocity.y + Mathf.Sqrt(JumpHeight * -2f * gravityForce); //on multiplie la hauteur du saut par (-2) et par la gravité
         }

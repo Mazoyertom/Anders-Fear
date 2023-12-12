@@ -8,6 +8,7 @@ public class Sc_MousePosition : MonoBehaviour
 
 
     public Vector3 screenPosition;
+    public Vector3 worldPosition;
 
 
     // Start is called before the first frame update
@@ -20,7 +21,13 @@ public class Sc_MousePosition : MonoBehaviour
     void Update()
     {
         screenPosition = Input.mousePosition;
+        screenPosition.z = Camera.main.nearClipPlane + 1;
 
-       
+
+        worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+        transform.position = worldPosition;
+
+
     }
 }
