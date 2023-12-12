@@ -42,7 +42,7 @@ public class Sc_FieldOfView : MonoBehaviour
     {
         Collider[] rangeCheck = Physics.OverlapSphere(transform.position, fovRadius, targetMask); //On sait qu'il n'y a qu'un seul "player" donc la valeur va rester a 0
 
-        if (rangeCheck.Length != 0) // Si le tableau n'est pas vide
+        if (rangeCheck.Length != 0) // Si le tableau n'est pas vide : Si le joueur n'est pas dans la range de l'ennemi
         {
             Transform playerTarget = rangeCheck[0].transform; //On regarde le 1e objet de la liste et on regarde son transform
             Vector3 directionToTarget = (playerTarget.position - transform.position).normalized; //On soustrait la position du joueur et la position de l'objet pour connaitre la plus courte distance
