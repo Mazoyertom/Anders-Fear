@@ -27,7 +27,7 @@ public class Sc_Patrol : MonoBehaviour
     void Update()
     {
         distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
-        Debug.Log("Distance to target Point : " + distanceToTargertPoint);
+        //Debug.Log("Distance to target Point : " + distanceToTargertPoint);
 
         if (distanceToTargertPoint < 0.5f) //Si l'ennemi est suffisament proche, on lance le script
         {

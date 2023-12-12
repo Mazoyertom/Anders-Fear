@@ -11,7 +11,11 @@ public class Sc_Camera : MonoBehaviour
 
     float xRotation = 0f;
 
-    
+    public Vector3 screenPosition;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +26,15 @@ public class Sc_Camera : MonoBehaviour
     void Update()
     {
         // Lock le curseur au centre de l'écran et le rendre invisible
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         // Récupérer les inpput de la souris
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSensitivity;
+
+        screenPosition = Input.mousePosition;
+
 
         xRotation = xRotation - mouseY;
 
