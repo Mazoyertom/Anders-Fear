@@ -7,13 +7,17 @@ public class Sc_Patrol : MonoBehaviour
 {
     public Transform[] patrolPoints;
     public int targetPoint;
-    public float speed;
+    public float patrolSpeed = 3f;
+    public float chaseSpeed = 5f;
     public GameObject goalCheck;
     public float distanceToTargertPoint;
 
     public bool isPatrolling;
     public bool isWaiting;
     public bool isChasing;
+
+    public GameObject chaseCheck;
+    public GameObject playerController;
 
 
     // Start is called before the first frame update
@@ -27,16 +31,15 @@ public class Sc_Patrol : MonoBehaviour
     void Update()
     {
         distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
-        //Debug.Log("Distance to target Point : " + distanceToTargertPoint);
+        Debug.Log("Distance to target Point : " + distanceToTargertPoint);
 
-        if (distanceToTargertPoint < 0.5f) //Si l'ennemi est suffisament proche, on lance le script
+        if (distanceToTargertPoint < 0.1f) //Si l'ennemi est suffisament proche, on lance le script
         {
             StartCoroutine("waitingAtGoal");
             increaseTargetInt();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)   
-
+        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)   
     }
 
 
@@ -52,7 +55,7 @@ public class Sc_Patrol : MonoBehaviour
 
     private IEnumerator waitingAtGoal()
     {
-        float waitingTime = 2f;
+        float waitingTime = 5f;
         WaitForSeconds wait = new WaitForSeconds(waitingTime);
 
         while (true)
@@ -61,6 +64,23 @@ public class Sc_Patrol : MonoBehaviour
 
             increaseTargetInt();
         }
+    }
+
+
+    void chasePlayer()
+    {
+        if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == true)
+        {
+            isChasing = true;
+        }
+
+        if(isChasing == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, chaseSpeed * Time.deltaTime);
+        }
+
+
+
     }
 
 

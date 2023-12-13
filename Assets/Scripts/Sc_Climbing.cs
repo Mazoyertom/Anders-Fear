@@ -8,7 +8,7 @@ public class Sc_Climbing : MonoBehaviour
     public Camera cam;
     private float playerHeight = 2f;
     private float playerRadius = 0.5f;
-    private KeyCode vaultKey = KeyCode.F;
+    private KeyCode vaultKey = KeyCode.E;
 
     // Start is called before the first frame update
     void Start()
