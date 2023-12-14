@@ -11,10 +11,11 @@ public class Sc_Patrol : MonoBehaviour
     public float chaseSpeed = 5f;
     public GameObject goalCheck;
     public float distanceToTargertPoint;
+    public float distanceToPlayerLastPosition;
     float waitingTime = 6000f;
     public Vector3 playerLastPosition;
 
-    public bool isPatrolling;
+    public bool isPatrolling = true;
     public bool isWaiting;
     public bool isChasing;
     public bool isSearching;
@@ -46,7 +47,7 @@ public class Sc_Patrol : MonoBehaviour
                 increaseTargetInt();
             }
 
-        transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)  
+            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)  
         }
         
 
@@ -64,6 +65,7 @@ public class Sc_Patrol : MonoBehaviour
 
             if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == false)
             {
+                playerLastPosition = playerController.GetComponent<Rigidbody>().transform.position;
                 isChasing = false;
                 isSearching = true;
             }
@@ -71,9 +73,17 @@ public class Sc_Patrol : MonoBehaviour
 
         if(isSearching == true)
         {
-            Debug.Log("Je t'ai perdu de vue");
-            Destroy(this.gameObject);
-            playerLastPosition = playerController.GetComponent<GameObject>().transform.position;
+            //Debug.Log("Mais ou est tu ?");
+            transform.position = Vector3.MoveTowards(transform.position, playerLastPosition, patrolSpeed * Time.deltaTime);
+
+            distanceToPlayerLastPosition = Vector3.Distance(this.transform.position, playerLastPosition);
+            Debug.Log("Distance to Player last position : " + distanceToPlayerLastPosition);
+
+            if (distanceToPlayerLastPosition < 0.09f)
+            {
+                Destroy(this.gameObject);
+
+            }
         }
     }
 

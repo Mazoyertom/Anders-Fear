@@ -21,10 +21,10 @@ public class Sc_Death : MonoBehaviour
 
    private void playerDeath()
    {
-    if(isTouchingPlayer == true);
-    {
+    //if(isTouchingPlayer == true);
+   // {
         Destroy(playerBody.gameObject);
-    }
+   // }
    }
 
       private void OnTriggerExit()
