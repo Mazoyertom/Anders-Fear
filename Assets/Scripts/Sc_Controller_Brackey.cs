@@ -47,7 +47,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float currentYScale;
     public float crouchYScale;
     public float startYScale;
-    private KeyCode crouchKey = KeyCode.LeftControl;
+    private KeyCode crouchKey = KeyCode.LeftShift;
     public float crouchTransitionSpeed = 10000000000000f;
     public LayerMask hidingZoneLayer;
     public float crouchDelta;
