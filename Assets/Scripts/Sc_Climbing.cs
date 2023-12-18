@@ -13,7 +13,7 @@ public class Sc_Climbing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vaultLayer = LayerMask.NameToLayer("Vault"); //On définie que le layer de vault est "Vault"
+        vaultLayer = LayerMask.NameToLayer("Platform"); //On définie que le layer de vault est "Vault"
         vaultLayer = ~vaultLayer; //Les raycast n'intéragissent pas avec des layers, elles les ignorent. Donc on veut les cast qu'elles ignorent TOUT sauf les "Vault)
     }
 
