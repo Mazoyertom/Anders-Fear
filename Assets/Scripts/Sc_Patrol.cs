@@ -138,6 +138,8 @@ public class Sc_Patrol : MonoBehaviour
     void increaseTargetInt()
     {
         isPatrolling = true;
+        waitCounter = 0f;
+
         targetPoint++; //Loop qui passe a la valeur "suivante"
 
         if (targetPoint >= patrolPoints.Length) //Si on atteint la fin (Length est la "longueur" de l'array) on retourne au d�but

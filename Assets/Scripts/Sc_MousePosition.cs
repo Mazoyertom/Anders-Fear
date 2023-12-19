@@ -9,6 +9,7 @@ public class Sc_MousePosition : MonoBehaviour
 
     public Vector3 screenPosition;
     public Vector3 worldPosition;
+    public Transform playerHand;
 
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class Sc_MousePosition : MonoBehaviour
 
         worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
+        playerHand.LookAt(transform);
         transform.position = worldPosition;
 
 

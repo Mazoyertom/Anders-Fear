@@ -44,6 +44,7 @@ public class Sc_FieldOfView : MonoBehaviour
 
         if (rangeCheck.Length != 0) // Si le tableau n'est pas vide : Si le joueur n'est pas dans la range de l'ennemi
         {
+            Debug.Log("On voit le joueur");
             Transform playerTarget = rangeCheck[0].transform; //On regarde le 1e objet de la liste et on regarde son transform
             Vector3 directionToTarget = (playerTarget.position - transform.position).normalized; //On soustrait la position du joueur et la position de l'objet pour connaitre la plus courte distance
 
@@ -53,8 +54,8 @@ public class Sc_FieldOfView : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) == false) //Le "!" veut dire si on ne voit pas d'obstructionMask (mur) on voit le joueur
                 {
-                    canSeePlayer = true;
-                    Debug.Log("On voit le joueur");
+                    
+                    canSeePlayer = true;                    
                 }
                 else
                 {
