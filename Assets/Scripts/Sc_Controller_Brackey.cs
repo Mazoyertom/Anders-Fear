@@ -35,12 +35,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float gravityForce = -9.81f;
     Vector3 velocity;
     public float JumpHeight = 3f;
-
-
-    [Header("Light")]
-    public bool playerLightOn;
-    public float playerLightEnergy;
-
+    
 
     [Header("Crouch")]
     public float crouchSpeed = 5f;
@@ -51,10 +46,8 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float crouchTransitionSpeed = 10000000000000f;
     public LayerMask hidingZoneLayer;
     public float crouchDelta;
-
-
-
     public GameObject aboveCheck;
+
 
 
 
@@ -66,6 +59,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         walkingSpeed = moveSpeed;
 
         isCrouching = false;
+        
     }
 
 

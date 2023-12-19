@@ -5,26 +5,50 @@ using UnityEngine;
 public class Sc_Light : MonoBehaviour
 {
 
-    public float mouseSensitivity;
 
-    public Transform playerBody;
-
-    float xRotation = 0f;
-
+    [Header("Light")]
+    public bool lightFocus;
     public Light playerLight;
+    public float lightIntensity;
+    private KeyCode lightFocusKey = KeyCode.Mouse0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerLight = GetComponent<Light>();
+        playerLight.intensity = 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if(Input.GetKey(lightFocusKey))
+        {
+            lightFocus = true;
+        }
+
+        if(lightFocus == true)
+        {
+            playerLight.intensity = Mathf.PingPong(Time.time * 4, 16);
+            Debug.Log("Light intensity : " + playerLight.intensity);
+
+
+
+            lightFocus = false;
+            
+
+        }
+
+
         
+
+
+
+
+
+
 
 
 

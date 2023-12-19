@@ -3559,8 +3559,6 @@ MonoBehaviour:
     m_Bits: 4160
   gravityForce: -12
   JumpHeight: 2
-  playerLightOn: 0
-  playerLightEnergy: 0
   crouchSpeed: 1
   currentYScale: 0
   crouchYScale: 0.5
@@ -4912,8 +4910,9 @@ GameObject:
   - component: {fileID: 1048235326}
   - component: {fileID: 1048235325}
   - component: {fileID: 1048235327}
+  - component: {fileID: 1048235328}
   m_Layer: 10
-  m_Name: Spot Light
+  m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5035,6 +5034,21 @@ MonoBehaviour:
   screenPosition: {x: 0, y: 0, z: 0}
   worldPosition: {x: 0, y: 0, z: 0}
   playerHand: {fileID: 0}
+--- !u!114 &1048235328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048235323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightFocus: 0
+  playerLight: {fileID: 1048235326}
+  lightIntensity: 10
 --- !u!1 &1117760762
 GameObject:
   m_ObjectHideFlags: 0
@@ -7295,6 +7309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731862582}
+  - component: {fileID: 1731862583}
   m_Layer: 10
   m_Name: Hand
   m_TagString: Untagged
@@ -7318,6 +7333,21 @@ Transform:
   m_Father: {fileID: 735241478}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1731862583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731862581}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightFocus: 0
+  playerLight: {fileID: 1048235326}
+  lightIntensity: 10
 --- !u!1 &1752116357
 GameObject:
   m_ObjectHideFlags: 0
