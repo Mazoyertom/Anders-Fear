@@ -5,24 +5,31 @@ using UnityEngine.AI;
 
 public class Sc_Patrol : MonoBehaviour
 {
+
+    [Header("Patrol")]
     public Transform[] patrolPoints;
     public int targetPoint;
     public float patrolSpeed = 3f;
-    public float chaseSpeed = 5f;
-    public GameObject goalCheck;
     public float distanceToTargertPoint;
-    public float distanceToPlayerLastPosition;
-    float waitingTime = 6000f;
-    public Vector3 playerLastPosition;
+    public GameObject goalCheck;
 
+    [Header("Waiting")]
+    private float waitCounter = 0f;
+    private float waitingTime = 10f;
+
+    [Header("Chase")]
+    public float chaseSpeed = 5f;
+    public float distanceToPlayerLastPosition;
+    public Vector3 playerLastPosition;
+    public GameObject chaseCheck;
+    public GameObject deathCheck;
+    public GameObject playerController;
+
+    [Header("State")]
     public bool isPatrolling = true;
     public bool isWaiting;
     public bool isChasing;
     public bool isSearching;
-
-    public GameObject chaseCheck;
-    public GameObject deathCheck;
-    public GameObject playerController;
 
 
     // Start is called before the first frame update
@@ -36,6 +43,16 @@ public class Sc_Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isChasing == true)
+        {
+            transform.LookAt(playerController.transform.position);
+        } 
+
+        if(isSearching == true)
+        {
+            transform.LookAt(playerLastPosition);
+        }
+
         if(isPatrolling == true);
         {
             distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
@@ -43,11 +60,12 @@ public class Sc_Patrol : MonoBehaviour
 
             if (distanceToTargertPoint < 0.09f) //Si l'ennemi est suffisament proche, on lance le script
             {
-                StartCoroutine("waitingAtGoal");
-                increaseTargetInt();
+                isWaiting = true;
+                //StartCoroutine("waitingAtGoal");
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)  
+            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)
+            transform.LookAt(patrolPoints[targetPoint].position);
         }
         
 
@@ -82,14 +100,44 @@ public class Sc_Patrol : MonoBehaviour
             if (distanceToPlayerLastPosition < 0.09f)
             {
                 Destroy(this.gameObject);
-
             }
+
+            if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == true)
+            {
+                Debug.Log("AHHHHHHHHHHH Je te poursuis");
+                isSearching = false;
+                isChasing = true;
+            }
+        }
+
+        if(isWaiting == true)
+        {
+            isPatrolling = false;
+            waitCounter += Time.deltaTime;
+
+
+            Debug.Log("Time : " + waitCounter);
+
+            if(waitCounter < waitingTime)
+            {
+                isWaiting = false;
+
+                increaseTargetInt();
+                
+            }
+            else
+            {
+                
+            }
+            
+
         }
     }
 
 
     void increaseTargetInt()
     {
+        isPatrolling = true;
         targetPoint++; //Loop qui passe a la valeur "suivante"
 
         if (targetPoint >= patrolPoints.Length) //Si on atteint la fin (Length est la "longueur" de l'array) on retourne au d�but
@@ -98,17 +146,7 @@ public class Sc_Patrol : MonoBehaviour
         }
     }
 
-    private IEnumerator waitingAtGoal()
-    {
-        WaitForSeconds wait = new WaitForSeconds(waitingTime);
 
-        while (true)
-        {
-            yield return wait;
-
-            increaseTargetInt();
-        }
-    }
 
 
     void chasePlayer()
