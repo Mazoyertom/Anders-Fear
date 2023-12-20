@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sc_MonsterDeath : MonoBehaviour
 {
 
-    public bool AffectLight = true;
+    public bool AffectLight = false;
 
     // Start is called before the first frame update
     void Start()
