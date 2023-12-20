@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1712081492969339738}
   - component: {fileID: 6325263464998787615}
   - component: {fileID: 373439875226112898}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Death Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 5692924573681244748}
   - component: {fileID: 8614308760256910720}
   - component: {fileID: 6915098947230834503}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 4771858143245537685}
   - component: {fileID: 4233805461452127373}
   - component: {fileID: 1178789362606535070}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6515538179249216581}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: goalCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 3787741300458444186}
   - component: {fileID: 8569268777768949632}
   - component: {fileID: 8505558896449907916}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4838500945119727467}
   - component: {fileID: 3166926468135715853}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: FOVObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 679314076933713736}
   - component: {fileID: 7309458982589446810}
   - component: {fileID: 4185600948488933651}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 6667366280608290461}
   - component: {fileID: 9030863192003210795}
   - component: {fileID: 4807749544133643241}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 3615379553460460191}
   - component: {fileID: 1754045922979333953}
   - component: {fileID: 6517957007800381300}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 7729836562940187401}
   - component: {fileID: 3243983028908364975}
   - component: {fileID: 3898427022768003463}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GizmoMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
