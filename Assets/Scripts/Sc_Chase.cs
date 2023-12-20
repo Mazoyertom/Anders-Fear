@@ -28,7 +28,7 @@ public class Sc_Chase : MonoBehaviour
             transform.LookAt(playerController.transform.position);
         }
 
-            if(chaseCheck.GetComponent<Sc_FOV2>().canSeePlayer == true)
+            if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == true)
             {
             Debug.Log("AHHHHHHHHHHH Je te poursuis");
             isChasing = true;
@@ -38,7 +38,7 @@ public class Sc_Chase : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, chaseSpeed * Time.deltaTime);
 
-            if(chaseCheck.GetComponent<Sc_FOV2>().canSeePlayer == false)
+            if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == false)
             {
                 playerLastPosition = playerController.GetComponent<Rigidbody>().transform.position;
                 isChasing = false;
