@@ -44,17 +44,16 @@ public class Sc_FieldOfView : MonoBehaviour
 
         if (rangeCheck.Length != 0) // Si le tableau n'est pas vide : Si le joueur n'est pas dans la range de l'ennemi
         {
-            //Debug.Log("On voit le joueur");
             Transform playerTarget = rangeCheck[0].transform; //On regarde le 1e objet de la liste et on regarde son transform
             Vector3 directionToTarget = (playerTarget.position - transform.position).normalized; //On soustrait la position du joueur et la position de l'objet pour connaitre la plus courte distance
 
             if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2) //Ca compare l'angle de la position de l'ennemi et de la target et v�rifie si la target dans le fov 
             {
-                float distanceToTarget = Vector3.Distance(transform.position, playerTarget.position); // Envoie un float qui vérifie la distance centre l'ennemi et la targe
+                float distanceToTarget = Vector3.Distance(transform.position, playerTarget.position); // Envoie un float qui vérifie la distance entre l'ennemi et la target
 
                 if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) == false) //Le "!" veut dire si on ne voit pas d'obstructionMask (mur) on voit le joueur
                 {
-                    
+                    Debug.Log("On voit le joueur");
                     canSeePlayer = true;                    
                 }
                 else

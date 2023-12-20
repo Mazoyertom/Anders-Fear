@@ -35,7 +35,6 @@ public class Sc_Light : MonoBehaviour
             Debug.Log("Light intensity : " + playerLight.intensity);
 
 
-
             lightFocus = false;
             
 
