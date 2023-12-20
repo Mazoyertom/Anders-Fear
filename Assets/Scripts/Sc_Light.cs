@@ -8,6 +8,7 @@ public class Sc_Light : MonoBehaviour
 
     [Header("Light")]
     public bool lightFocus;
+    public bool lightBurst;
     public Light playerLight;
     public float lightIntensity;
     private KeyCode lightFocusKey = KeyCode.Mouse0;
@@ -31,13 +32,20 @@ public class Sc_Light : MonoBehaviour
 
         if(lightFocus == true)
         {
-            playerLight.intensity = Mathf.PingPong(Time.time * 4, 16);
+            playerLight.intensity = Mathf.PingPong(Time.time * 6, 32);
             Debug.Log("Light intensity : " + playerLight.intensity);
+        }
 
 
+        if(playerLight.intensity >= 32)
+        {
+            lightBurst = true; 
             lightFocus = false;
-            
+        }
 
+        if(lightBurst == true)
+        {
+            
         }
 
 
