@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 5729483738079645761}
   - component: {fileID: 7729836562940187401}
   - component: {fileID: 3243983028908364975}
+  - component: {fileID: 3898427022768003463}
   m_Layer: 0
   m_Name: GizmoMonster
   m_TagString: Untagged
@@ -1061,3 +1062,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   canSeePlayer: 0
+--- !u!114 &3898427022768003463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634123198479586761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56ff30bd967aa845abaa56f7d57b1af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AffectLight: 0
