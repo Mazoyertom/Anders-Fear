@@ -22,12 +22,11 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float currentSpeed;
     float walkingSpeed = 5f;
     float crouchSpeed = 1f;
-    float focusSpeed = 1f;
+    public float focusSpeed = 1f;
     float horizontalInput;
     float verticalInput;
     public GameObject playerLightRef;
     
-
 
     [Header("Ground check")]
     public Transform groundCheck;
@@ -50,8 +49,6 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public LayerMask hidingZoneLayer;
     public float crouchDelta;
     public GameObject aboveCheck;
-
-
 
 
     private void Start()
@@ -93,8 +90,10 @@ public class Sc_Controller_Brackey : MonoBehaviour
         }
 
         //Mode - Focus
-        if(GetComponent<Sc_Light>().lightFocus == true)
+        //if(GetComponent<Sc_Light>().lightFocus == true)
+        if((Input.GetKey(KeyCode.Mouse0)))
         {
+            Debug.Log("Y'a un truc au dessus");
             state = MouvementState.focus;
             currentSpeed = focusSpeed;
         }

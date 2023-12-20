@@ -110,8 +110,8 @@ public class Sc_Light : MonoBehaviour
            {
                 if(hit.collider.gameObject.tag == "Light Target")
                 {
-                    Debug.Log("BOOOOOOOOOOM");
-                    Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit");
+                    Debug.Log("aaaaaaaaaaaaaaaa");
+                    //Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit");
                 }
            }
         }
