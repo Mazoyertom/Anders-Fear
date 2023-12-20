@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 3972112116270786157}
   - component: {fileID: 7636977095307358335}
   - component: {fileID: 4877741474979262674}
-  - component: {fileID: 8762633348888065727}
-  - component: {fileID: 1642790993708735272}
   m_Layer: 10
   m_Name: PlayerLight
   m_TagString: Untagged
@@ -121,37 +119,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &8762633348888065727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361071432520110816}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93870a7a00ac4f445b8b977f42446d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenPosition: {x: 0, y: 0, z: 0}
-  worldPosition: {x: 0, y: 0, z: 0}
-  playerHand: {fileID: 0}
---- !u!114 &1642790993708735272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361071432520110816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightFocus: 0
-  lightBurst: 0
-  playerLight: {fileID: 7636977095307358335}
-  lightIntensity: 10
 --- !u!1 &1502177382763052752
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +264,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3448587923165097015}
-  - component: {fileID: 6274943029932064233}
   m_Layer: 10
   m_Name: Hand
   m_TagString: Untagged
@@ -313,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2717707214089809577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.309, y: 1.151, z: 0.808}
+  m_LocalPosition: {x: 0.309, y: 1.249, z: 0.808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -321,22 +287,6 @@ Transform:
   m_Father: {fileID: 5128788741784621723}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6274943029932064233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2717707214089809577}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightFocus: 0
-  lightBurst: 0
-  playerLight: {fileID: 7636977095307358335}
-  lightIntensity: 10
 --- !u!1 &2868476533495295425
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,8 +422,9 @@ GameObject:
   - component: {fileID: 908923734141293453}
   - component: {fileID: 947070153712182281}
   - component: {fileID: 5540689994007598086}
+  - component: {fileID: 3664037483181529771}
   m_Layer: 10
-  m_Name: GizmoCharacter
+  m_Name: GizmoCharacter (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4103543843467870101}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 18.7, y: 0, z: 8.8}
+  m_LocalPosition: {x: 14.64, y: 0, z: 0.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -498,7 +449,7 @@ Transform:
   - {fileID: 5846012939614268983}
   - {fileID: 179283411427402521}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!143 &301634463898263444
 CharacterController:
@@ -544,8 +495,8 @@ MonoBehaviour:
   isJumping: 0
   isCrouching: 0
   isTryingToStand: 0
-  moveSpeed: 5
-  walkingSpeed: 0
+  currentSpeed: 5
+  playerLightRef: {fileID: 4103543843467870101}
   groundCheck: {fileID: 4971494681729832551}
   sphereSize: 0.3
   groundMask:
@@ -553,7 +504,6 @@ MonoBehaviour:
     m_Bits: 4160
   gravityForce: -12
   JumpHeight: 2
-  crouchSpeed: 1
   currentYScale: 0
   crouchYScale: 0.5
   startYScale: 0
@@ -603,6 +553,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7533723598146020543}
+--- !u!114 &3664037483181529771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103543843467870101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightFocus: 0
+  lightUnfocus: 0
+  lightBurst: 0
+  playerLight: {fileID: 7636977095307358335}
+  objectLight: {fileID: 2717707214089809577}
+  currentLightIntensity: 0
+  currentLightInnerAngle: 0
+  currentLightOuterAngle: 0
 --- !u!1 &4697893123734648037
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 1000
   playerBody: {fileID: 5128788741784621723}
-  playerHand: {fileID: 0}
+  playerHand: {fileID: 3972112116270786157}
   screenPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1873915410630835653
 MonoBehaviour:

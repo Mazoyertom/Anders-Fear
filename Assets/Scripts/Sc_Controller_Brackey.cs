@@ -19,10 +19,14 @@ public class Sc_Controller_Brackey : MonoBehaviour
 
 
     [Header("Mouvement")]
-    public float moveSpeed = 15f;
-    public float walkingSpeed;
+    public float currentSpeed;
+    float walkingSpeed = 5f;
+    float crouchSpeed = 1f;
+    float focusSpeed = 1f;
     float horizontalInput;
     float verticalInput;
+    public GameObject playerLightRef;
+    
 
 
     [Header("Ground check")]
@@ -38,7 +42,6 @@ public class Sc_Controller_Brackey : MonoBehaviour
     
 
     [Header("Crouch")]
-    public float crouchSpeed = 5f;
     public float currentYScale;
     public float crouchYScale;
     public float startYScale;
@@ -56,7 +59,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         startYScale = currentYScale = transform.localScale.y; 
-        walkingSpeed = moveSpeed;
+        currentSpeed = 5f;
 
         isCrouching = false;
         
@@ -69,6 +72,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         jumping,
         walking,
         crouching,
+        focus,
     }
 
     private void StateHandler()
@@ -78,14 +82,21 @@ public class Sc_Controller_Brackey : MonoBehaviour
         {
             state = MouvementState.walking;
             Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput; //Pour les valeurs du Vector3 de direction on prends les inputs et on les associe a leurs directions
-            controller.Move(moveDirection * moveSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
         }
 
         //Mode - Crouching
         if(Input.GetKeyDown(crouchKey))
         {
             state = MouvementState.crouching;
-            moveSpeed = crouchSpeed;
+            currentSpeed = crouchSpeed;
+        }
+
+        //Mode - Focus
+        if(GetComponent<Sc_Light>().lightFocus == true)
+        {
+            state = MouvementState.focus;
+            currentSpeed = focusSpeed;
         }
     }
 
@@ -103,6 +114,10 @@ public class Sc_Controller_Brackey : MonoBehaviour
         // Gravité
         velocity.y = velocity.y + gravityForce * Time.deltaTime; //Simulation de la gravité 
         controller.Move(velocity * Time.deltaTime); //Son application sur le controller
+
+
+        
+
 
 
 
@@ -146,7 +161,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         if (isCrouching == false)
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
-            moveSpeed = walkingSpeed;
+            currentSpeed = walkingSpeed;
             isTryingToStand = false;
             aboveCheck.GetComponent<Sc_AboveCheck>().isThereSomethingAbove = false;
         }
