@@ -25,11 +25,18 @@ public class Sc_Patrol : MonoBehaviour
     public GameObject deathCheck;
     public GameObject playerController;
 
+    [Header("Blind")]
+    public GameObject blindCheck;
+    public float blindTime;
+
     [Header("State")]
-    public bool isPatrolling = true;
+    public bool isPatrolling;
     public bool isWaiting;
     public bool isChasing;
     public bool isSearching;
+    public bool isBlinded;
+
+
 
 
     // Start is called before the first frame update
@@ -43,47 +50,35 @@ public class Sc_Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isChasing == true)
-        {
-            transform.LookAt(playerController.transform.position);
-        } 
 
-        if(isSearching == true)
+       if (isPatrolling == true)
         {
-            transform.LookAt(playerLastPosition);
-        }
+            transform.LookAt(patrolPoints[targetPoint].position);
+            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse) 
 
-        if(isPatrolling == true);
-        {
             distanceToTargertPoint = Vector3.Distance(patrolPoints[targetPoint].position, goalCheck.transform.position); //On calcule la distance entre le goal et l'ennemi
-            //Debug.Log("Distance to target Point : " + distanceToTargertPoint);
 
             if (distanceToTargertPoint < 0.09f) //Si l'ennemi est suffisament proche, on lance le script
             {
-                isWaiting = true;
-                //StartCoroutine("waitingAtGoal");
+                increaseTargetInt();
             }
-
-            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, patrolSpeed * Time.deltaTime); //L'ennemi se d�place vers le Goal en prenant (sa position, la position de on but, sa vitesse)
-            transform.LookAt(patrolPoints[targetPoint].position);
         }
         
-
-
-        if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == true)
+        if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == true)
         {
-            Debug.Log("AHHHHHHHHHHH Je te poursuis");
+            //Debug.Log("Je te poursuis");
             isPatrolling = false;
             isChasing = true;
         }
 
         if(isChasing == true)
         {
+            transform.LookAt(playerController.transform.position);
             transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, chaseSpeed * Time.deltaTime);
 
-            if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == false)
+            if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == false)
             {
-                playerLastPosition = playerController.GetComponent<Rigidbody>().transform.position;
+                playerLastPosition = playerController.transform.position;
                 isChasing = false;
                 isSearching = true;
             }
@@ -92,29 +87,64 @@ public class Sc_Patrol : MonoBehaviour
         if(isSearching == true)
         {
             //Debug.Log("Mais ou est tu ?");
+            transform.LookAt(playerLastPosition);
             transform.position = Vector3.MoveTowards(transform.position, playerLastPosition, patrolSpeed * Time.deltaTime);
 
             distanceToPlayerLastPosition = Vector3.Distance(this.transform.position, playerLastPosition);
-            Debug.Log("Distance to Player last position : " + distanceToPlayerLastPosition);
+            //Debug.Log("Distance to Player last position : " + distanceToPlayerLastPosition);
 
             if (distanceToPlayerLastPosition < 0.09f)
             {
-                Destroy(this.gameObject);
+                isChasing = false;
+                isSearching = false;
+                isPatrolling = true;
             }
 
-            if(chaseCheck.GetComponent<Sc_FieldOfView>().canSeePlayer == true)
+            if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == true)
             {
-                Debug.Log("AHHHHHHHHHHH Je te poursuis");
+                //Debug.Log("AHHHHHHHHHHH TE VOILA !");
                 isSearching = false;
                 isChasing = true;
             }
         }
 
-        if(isWaiting == true)
+
+
+
+
+        if(blindCheck.GetComponent<Sc_Blinded>().isBlinded == true)
+        {
+            isChasing = false;
+            isSearching = false;
+            isPatrolling = false;
+            isBlinded = true;
+
+        }
+        else 
+        {
+            isBlinded = false;
+        
+        }
+
+        if (isBlinded == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, 0f * Time.deltaTime);
+            blindTime += Time.deltaTime;
+
+            if (blindTime >= 15f)
+            {
+                isBlinded = false;
+                blindTime = 0f;
+            }
+        }
+
+
+
+
+        if (isWaiting == true)
         {
             isPatrolling = false;
             waitCounter += Time.deltaTime;
-
 
             Debug.Log("Time : " + waitCounter);
 
@@ -150,11 +180,12 @@ public class Sc_Patrol : MonoBehaviour
 
 
 
+    
 
-    void chasePlayer()
-    {
-        
-    }
+
+
+
+
 
 
 }

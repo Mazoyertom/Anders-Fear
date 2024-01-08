@@ -153,7 +153,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
             {
                 isTryingToStand = true;
                 isCrouching = false;
-                Debug.Log("Y'a un truc au dessus");
+                //Debug.Log("Y'a un truc au dessus");
             }
         }
 

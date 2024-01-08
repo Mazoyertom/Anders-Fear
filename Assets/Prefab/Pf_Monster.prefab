@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1168013889511305987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.461, z: 0.572}
-  m_LocalScale: {x: 1, y: 0.8269911, z: 0.73304}
+  m_LocalScale: {x: 1.4127, y: 1.0951016, z: 0.73304}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4387998676417844555}
@@ -460,14 +460,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7481037960989155516}
-  - component: {fileID: 2718723230910762848}
   m_Layer: 13
   m_Name: FOVBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7481037960989155516
 Transform:
   m_ObjectHideFlags: 0
@@ -484,24 +483,6 @@ Transform:
   m_Father: {fileID: 4387998676417844555}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2718723230910762848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3144969050427556040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06ee622a1a91584e9f9049ce3c58a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &3301984353282472192
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +532,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3301984353282472192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -601,7 +582,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1116,9 +1097,8 @@ GameObject:
   - component: {fileID: 7729836562940187401}
   - component: {fileID: 3243983028908364975}
   - component: {fileID: 3898427022768003463}
-  - component: {fileID: 1164521539334917218}
   m_Layer: 13
-  m_Name: Pf_Monster
+  m_Name: PF_Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1205,7 +1185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8634123198479586761}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e2f60ba5fb859c4695f15757ee4d024, type: 3}
   m_Name: 
@@ -1233,22 +1213,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AffectLight: 0
---- !u!114 &1164521539334917218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8634123198479586761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e42015fdbcca4f42b1502d6830f9e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseSpeed: 5
-  distanceToPlayerLastPosition: 0
-  playerLastPosition: {x: 0, y: 0, z: 0}
-  chaseCheck: {fileID: 3144969050427556040}
-  deathCheck: {fileID: 1792455232916889401}
-  playerController: {fileID: 0}
-  isChasing: 0

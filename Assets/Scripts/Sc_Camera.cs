@@ -10,7 +10,7 @@ public class Sc_Camera : MonoBehaviour
     public Transform playerBody;
     public Transform playerHand;
 
-    float xRotation = 0f;
+    //float xRotation = 0f;
 
     public Vector3 screenPosition;
 

@@ -53,7 +53,7 @@ public class Sc_FieldOfView : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask) == false) //Le "!" veut dire si on ne voit pas d'obstructionMask (mur) on voit le joueur
                 {
-                    Debug.Log("On voit le joueur");
+                    //Debug.Log("On voit le joueur");
                     canSeePlayer = true;                    
                 }
                 else

@@ -11,6 +11,7 @@ public class Sc_Light : MonoBehaviour
     bool bCanBurstAgain;
     public Light playerLight;
     public GameObject objectLight;
+    public bool isEnnemyBlinded;
 
     float startLightIntensity = 5f;
     public float currentLightIntensity;
@@ -35,7 +36,7 @@ public class Sc_Light : MonoBehaviour
         currentLightInnerAngle = playerLight.innerSpotAngle;
 
 
-
+        isEnnemyBlinded = false;
         lightFocus = false;
     }
 
@@ -59,7 +60,7 @@ public class Sc_Light : MonoBehaviour
             }
             else
             {
-                playerLight.intensity += Time.deltaTime * 5;
+                playerLight.intensity += Time.deltaTime * 15;
                 //playerLight.innerSpotAngle += Time.deltaTime * 5;
             }
 
@@ -110,8 +111,7 @@ public class Sc_Light : MonoBehaviour
            {
                 if(hit.collider.gameObject.tag == "Light Target")
                 {
-                    Debug.Log("aaaaaaaaaaaaaaaa");
-                    //Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit");
+                    isEnnemyBlinded = true;
                 }
            }
         }
