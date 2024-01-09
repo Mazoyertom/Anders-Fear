@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Prefab/PF_Collectible.prefab.meta
 guid: 4459bb78358cb38418a3ee6e778e03cd
-========
-guid: 17408c6c62f3dd34caefe88c154ebe40
->>>>>>>> parent of 36603b9 ([IA][GPP] Au final le fov fonctionne + update prefab):Assets/Prefab/Pf_Monster.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

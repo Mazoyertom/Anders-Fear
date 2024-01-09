@@ -24,9 +24,12 @@ public class Sc_Patrol : MonoBehaviour
     public GameObject chaseCheck;
     public GameObject deathCheck;
     public GameObject playerController;
+    [SerializeField] private Sc_LineOfSight SeeingPlayer;
 
     [Header("Blind")]
     public GameObject blindCheck;
+    private float blindSpeed = 0f;
+    [SerializeField] private Sc_Blinded EnnemyBlind;
     public float blindTime;
 
     [Header("State")]
@@ -44,6 +47,9 @@ public class Sc_Patrol : MonoBehaviour
     {
         targetPoint = 0;
         isPatrolling = true;
+
+        EnnemyBlind = blindCheck.GetComponent<Sc_Blinded>();
+        SeeingPlayer = chaseCheck.GetComponent<Sc_LineOfSight>();
     }
 
 
@@ -64,13 +70,13 @@ public class Sc_Patrol : MonoBehaviour
             }
         }
         
-        if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == true)
+        if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == true && !isBlinded)
         {
             //Debug.Log("Je te poursuis");
             isPatrolling = false;
             isChasing = true;
         }
-
+             
         if(isChasing == true)
         {
             transform.LookAt(playerController.transform.position);
@@ -102,7 +108,6 @@ public class Sc_Patrol : MonoBehaviour
 
             if(chaseCheck.GetComponent<Sc_LineOfSight>().canSeePlayer == true)
             {
-                //Debug.Log("AHHHHHHHHHHH TE VOILA !");
                 isSearching = false;
                 isChasing = true;
             }
@@ -112,31 +117,51 @@ public class Sc_Patrol : MonoBehaviour
 
 
 
-        if(blindCheck.GetComponent<Sc_Blinded>().isBlinded == true)
+        if(EnnemyBlind.isBlindTrigger == true)
         {
             isChasing = false;
             isSearching = false;
             isPatrolling = false;
             isBlinded = true;
-
         }
         else 
         {
             isBlinded = false;
-        
         }
 
         if (isBlinded == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, 0f * Time.deltaTime);
+            isChasing = false;
+            isSearching = false;
+            isPatrolling = false;
+            //SeeingPlayer.canSeePlayer = false;
+
+            transform.position = Vector3.MoveTowards(transform.position, playerController.transform.position, blindSpeed * Time.deltaTime);
             blindTime += Time.deltaTime;
 
-            if (blindTime >= 15f)
+            if (blindTime >= 5f)
             {
+                EnnemyBlind.isBlindTrigger = false;
                 isBlinded = false;
                 blindTime = 0f;
+                isPatrolling = true;
             }
+
+
+            
         }
+        else if (isBlinded == false)
+        {
+            blindTime = 0f;
+            //isPatrolling = true;
+        }
+
+        if (!isChasing && !isSearching && !isPatrolling && !isBlinded)
+        {
+            isPatrolling = true;
+        }
+
+
 
 
 

@@ -4,44 +4,35 @@ using UnityEngine;
 
 public class Sc_Blinded : MonoBehaviour
 {
+    public bool isBlindTrigger;
+
     public GameObject lightCheck;
+    [SerializeField] private Sc_Light playerLight;
 
-    public bool isBlinded;
-    public bool AAA;
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        playerLight = lightCheck.GetComponent<Sc_Light>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+
     }
 
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Light Beam")
+        if (other.gameObject.tag == "Light Beam" && playerLight.lightBurst == true)
         {
-            AAA = true;
-            Debug.Log("LUMIERE");
-        }
-
-        if (other.gameObject.tag == "Light Beam" && lightCheck.GetComponent<Sc_Light>().lightBurst == true)
-        {
-            isBlinded = true;
+            isBlindTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Light Beam" || lightCheck.GetComponent<Sc_Light>().lightBurst == false)
+        if (lightCheck.GetComponent<Sc_Light>().lightBurst == false)
         {
-            isBlinded = false;
+            isBlindTrigger = false;
         }
     }
 }

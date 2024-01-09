@@ -60,7 +60,7 @@ public class Sc_Light : MonoBehaviour
             }
             else
             {
-                playerLight.intensity += Time.deltaTime * 15;
+                playerLight.intensity += Time.deltaTime * 11;
                 //playerLight.innerSpotAngle += Time.deltaTime * 5;
             }
 
@@ -95,7 +95,7 @@ public class Sc_Light : MonoBehaviour
         
         if(lightBurst == true)
         {
-           playerLight.intensity = 50f;
+           playerLight.intensity = 100f;
            fBurstTime += Time.deltaTime * 5;
 
            if(fBurstTime >= 3f)
@@ -106,22 +106,28 @@ public class Sc_Light : MonoBehaviour
                 playerLight.intensity = startLightIntensity;
                 fBurstTime = 0f;
            }
-
-           if(Physics.Raycast(objectLight.transform.position, objectLight.transform.forward, out var hit, 10f))
-           {
-                if(hit.collider.gameObject.tag == "Light Target")
-                {
-                    isEnnemyBlinded = true;
-                }
-           }
         }
 
         if(Input.GetKeyUp(lightFocusKey) && lightBurst == false)
         {
             bCanBurstAgain = true;
         }
+
+
     }
+
+
+
+
+
+
 }
+    
+
+
+        
+
+
 
 
    

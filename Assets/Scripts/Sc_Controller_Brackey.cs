@@ -93,7 +93,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         //if(GetComponent<Sc_Light>().lightFocus == true)
         if((Input.GetKey(KeyCode.Mouse0)))
         {
-            Debug.Log("Y'a un truc au dessus");
+            //Debug.Log("Y'a un truc au dessus");
             state = MouvementState.focus;
             currentSpeed = focusSpeed;
         }

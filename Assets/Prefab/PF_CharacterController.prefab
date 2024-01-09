@@ -133,9 +133,9 @@ GameObject:
   - component: {fileID: 1968377659572190794}
   - component: {fileID: 3184884893494348932}
   - component: {fileID: 2618735515494374397}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cylinder trigger
-  m_TagString: Untagged
+  m_TagString: Light Beam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,8 +148,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545465034668651004}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
-  m_LocalScale: {x: 2, y: 5.612068, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 13.64}
+  m_LocalScale: {x: 4, y: 15, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 936402176387041768}
@@ -220,7 +220,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -496,6 +496,7 @@ MonoBehaviour:
   lightBurst: 0
   playerLight: {fileID: 6111306685159825439}
   objectLight: {fileID: 5177667092881462144}
+  isEnnemyBlinded: 0
   currentLightIntensity: 0
   currentLightInnerAngle: 0
   currentLightOuterAngle: 0
@@ -815,7 +816,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1075,7 +1076,7 @@ GameObject:
   - component: {fileID: 2667015961575441567}
   - component: {fileID: 218022260282597412}
   - component: {fileID: 5937548546225124251}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: Cylinder lampe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,6 +1180,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4357999874589519722}
+  - component: {fileID: 2227859679706504576}
+  - component: {fileID: 3999693152985906666}
+  - component: {fileID: 8358239292679558136}
+  - component: {fileID: 7657559881843644587}
   m_Layer: 10
   m_Name: PF_CharacterController
   m_TagString: Untagged
@@ -1194,12 +1199,109 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8058670895904023889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.43, y: 0, z: 10.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7882132447451691905}
   - {fileID: 5024183991200190355}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &2227859679706504576
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058670895904023889}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3999693152985906666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058670895904023889}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fb3bea1c119e54895ba0711d826f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7695386291622485708}
+  state: 0
+  isGrounded: 0
+  isJumping: 0
+  isCrouching: 0
+  isTryingToStand: 0
+  currentSpeed: 5
+  focusSpeed: 1
+  playerLightRef: {fileID: 2932973499644342698}
+  groundCheck: {fileID: 7737902412788732661}
+  sphereSize: 0.3
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4160
+  gravityForce: -12
+  JumpHeight: 2
+  currentYScale: 0
+  crouchYScale: 0.5
+  startYScale: 0
+  crouchTransitionSpeed: 10
+  hidingZoneLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  crouchDelta: 10
+  aboveCheck: {fileID: 7128272758470114999}
+--- !u!114 &8358239292679558136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058670895904023889}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb5915be7ca9504ca331addd6ce3893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1795652918679769290}
+--- !u!114 &7657559881843644587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058670895904023889}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bdcb85d1df53449afe4d123c0d5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightFocus: 0
+  lightUnfocus: 0
+  lightBurst: 0
+  playerLight: {fileID: 6111306685159825439}
+  objectLight: {fileID: 5177667092881462144}
+  isEnnemyBlinded: 0
+  currentLightIntensity: 0
+  currentLightInnerAngle: 0
+  currentLightOuterAngle: 0
