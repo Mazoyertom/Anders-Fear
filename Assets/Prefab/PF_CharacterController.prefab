@@ -481,7 +481,7 @@ MonoBehaviour:
   isCrouching: 0
   isTryingToStand: 0
   currentSpeed: 5
-  focusSpeed: 1
+  focusSpeed: 0.5
   playerLightRef: {fileID: 2932973499644342698}
   groundCheck: {fileID: 7737902412788732661}
   sphereSize: 0.3

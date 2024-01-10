@@ -21,16 +21,16 @@ public class Sc_Controller_Brackey : MonoBehaviour
     [Header("Mouvement")]
     public float currentSpeed;
     float walkingSpeed = 5f;
-    float crouchSpeed = 1f;
-    public float focusSpeed = 1f;
+    float crouchSpeed = 1.5f;
+    float focusSpeed = 1.5f;
     float horizontalInput;
     float verticalInput;
     public GameObject playerLightRef;
-    
+
 
     [Header("Ground check")]
     public Transform groundCheck;
-    public float sphereSize = 0.05f;
+    float sphereSize = 0.03f;
     public LayerMask groundMask;
     
 
@@ -74,12 +74,12 @@ public class Sc_Controller_Brackey : MonoBehaviour
     private void StateHandler()
     {
         //Mode - Mouvement
-        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        {
-            state = MouvementState.walking;
-            Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput; //Pour les valeurs du Vector3 de direction on prends les inputs et on les associe a leurs directions
-            controller.Move(moveDirection * currentSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
-        }
+        //if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        //{
+           // state = MouvementState.walking;
+           // Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput; //Pour les valeurs du Vector3 de direction on prends les inputs et on les associe a leurs directions
+            //controller.Move(moveDirection * currentSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
+        //}
 
         //Mode - Crouching
         if(Input.GetKeyDown(crouchKey))
@@ -89,10 +89,9 @@ public class Sc_Controller_Brackey : MonoBehaviour
         }
 
         //Mode - Focus
-        //if(GetComponent<Sc_Light>().lightFocus == true)
-        if((Input.GetKey(KeyCode.Mouse0)))
+        //if((Input.GetKey(KeyCode.Mouse0)))
+        if (playerLightRef.GetComponent<Sc_Light>().lightFocus == true)
         {
-            //Debug.Log("Y'a un truc au dessus");
             state = MouvementState.focus;
             currentSpeed = focusSpeed;
         }
@@ -114,7 +113,20 @@ public class Sc_Controller_Brackey : MonoBehaviour
         controller.Move(velocity * Time.deltaTime); //Son application sur le controller
 
 
-        
+        if (playerLightRef.GetComponent<Sc_Light>().lightFocus == true)
+        {
+            currentSpeed = focusSpeed;
+        }
+
+
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            Vector3 moveDirection = transform.right * horizontalInput + transform.forward * verticalInput; //Pour les valeurs du Vector3 de direction on prends les inputs et on les associe a leurs directions
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime); //On multiple ces coordonnées par la vitesse de mouvement
+        }
+
+
+
 
 
 
