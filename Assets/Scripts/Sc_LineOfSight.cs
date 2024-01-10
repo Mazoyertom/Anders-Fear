@@ -6,13 +6,11 @@ public class Sc_LineOfSight : MonoBehaviour
 {
 
     public LayerMask targetMask;
-    public LayerMask obstructionMask;
 
     public GameObject playerTarget;
     public GameObject monster;
 
     public bool canSeePlayer;
-
     public bool enterTriggerZone;
 
 
@@ -25,7 +23,6 @@ public class Sc_LineOfSight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(enterTriggerZone == true)
         {
             RaycastHit hit;
@@ -46,9 +43,7 @@ public class Sc_LineOfSight : MonoBehaviour
             {
                 canSeePlayer = false;
             }
-
         }
-
     }
 
 
