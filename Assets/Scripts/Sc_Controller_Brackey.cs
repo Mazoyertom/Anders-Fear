@@ -46,7 +46,6 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public float startYScale;
     private KeyCode crouchKey = KeyCode.LeftShift;
     public float crouchTransitionSpeed = 10000000000000f;
-    public LayerMask hidingZoneLayer;
     public float crouchDelta;
     public GameObject aboveCheck;
 
@@ -166,8 +165,7 @@ public class Sc_Controller_Brackey : MonoBehaviour
         }
 
 
-        hidingZoneLayer = LayerMask.NameToLayer("Wall");
-        hidingZoneLayer = ~hidingZoneLayer;
+
         //aboveCheck = Physics.Raycast(transform.position, transform.up, out RaycastHit hit, 3f);
 
 
@@ -189,7 +187,6 @@ public class Sc_Controller_Brackey : MonoBehaviour
 
         if(isJumping == true)
         {
-
             isGrounded = false;
         }
     

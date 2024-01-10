@@ -26,7 +26,7 @@ public class Sc_LineOfSight : MonoBehaviour
         if(enterTriggerZone == true)
         {
             RaycastHit hit;
-            if (Physics.Raycast(monster.transform.position, ( playerTarget.transform.position - monster.transform.position), out hit, 15f) == true)
+            if (Physics.Raycast(monster.transform.position, (playerTarget.transform.position - monster.transform.position), out hit, 15f) == true)
             {
                 Debug.Log(hit.transform.gameObject.name + " hit");
                 Debug.DrawLine (monster.transform.position, hit.point,Color.red);

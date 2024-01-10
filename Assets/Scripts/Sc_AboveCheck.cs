@@ -8,9 +8,12 @@ public class Sc_AboveCheck : MonoBehaviour
 
     public LayerMask aboveLayer;
 
-    
-   private void OnTriggerEnter()
-   {
-        isThereSomethingAbove = true;
-   }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+          isThereSomethingAbove = true;
+        }
+    }
 }
