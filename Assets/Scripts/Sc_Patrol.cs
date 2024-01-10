@@ -27,10 +27,11 @@ public class Sc_Patrol : MonoBehaviour
     [SerializeField] private Sc_LineOfSight SeeingPlayer;
 
     [Header("Blind")]
-    public GameObject blindCheck;
     private float blindSpeed = 0f;
-    [SerializeField] private Sc_Blinded EnnemyBlind;
     public float blindTime;
+    public GameObject blindCheck;
+    [SerializeField] private Sc_Blinded EnnemyBlind;
+
 
     [Header("State")]
     public bool isPatrolling;
@@ -50,6 +51,7 @@ public class Sc_Patrol : MonoBehaviour
 
         EnnemyBlind = blindCheck.GetComponent<Sc_Blinded>();
         SeeingPlayer = chaseCheck.GetComponent<Sc_LineOfSight>();
+
     }
 
 
