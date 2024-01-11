@@ -17,28 +17,24 @@ public class Sc_Controller_Brackey : MonoBehaviour
     public bool isCrouching;
     public bool isTryingToStand;
 
-
     [Header("Mouvement")]
     public float currentSpeed;
     float walkingSpeed = 5f;
     float crouchSpeed = 1.5f;
-    float focusSpeed = 1.5f;
+    float focusSpeed = 2.5f;
     float horizontalInput;
     float verticalInput;
     public GameObject playerLightRef;
 
-
     [Header("Ground check")]
     public Transform groundCheck;
-    float sphereSize = 0.03f;
+    float sphereSize = 0.1f;
     public LayerMask groundMask;
     
-
     [Header("Jump")]
     public float gravityForce = -9.81f;
     Vector3 velocity;
     public float JumpHeight = 3f;
-    
 
     [Header("Crouch")]
     public float currentYScale;

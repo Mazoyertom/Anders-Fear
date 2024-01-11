@@ -60,7 +60,7 @@ public class Sc_Light : MonoBehaviour
             }
             else
             {
-                playerLight.intensity += Time.deltaTime * 13;
+                playerLight.intensity += Time.deltaTime * 11;
                 //playerLight.innerSpotAngle += Time.deltaTime * 5;
             }
 

@@ -18,7 +18,7 @@ public class Sc_Patrol : MonoBehaviour
     private float waitingTime = 10f;
 
     [Header("Chase")]
-    public float chaseSpeed = 5f;
+    float chaseSpeed = 4.5f;
     public float distanceToPlayerLastPosition;
     public Vector3 playerLastPosition;
     public GameObject chaseCheck;
