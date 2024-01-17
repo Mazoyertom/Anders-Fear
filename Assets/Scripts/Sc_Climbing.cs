@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sc_Climbing : MonoBehaviour
 {
     private int vaultLayer;
+    public float vaultRange = 3f;
     public Camera cam;
     private float playerHeight = 2f;
     private float playerRadius = 0.5f;
@@ -22,7 +23,7 @@ public class Sc_Climbing : MonoBehaviour
     {
         if(Input.GetKeyDown(vaultKey))
         {
-            //On lance un ray a la position de la cam / dans sa direction / ca stock le hit / de 1 de longueur / intéragit uniquement avec le vaultLayer
+            //On lance un ray a la position de la cam / dans sa direction / ca stock le hit / d'une portée que l'on veut / intéragit uniquement avec le vaultLayer
             if((Physics.Raycast(cam.transform.position, cam.transform.forward, out var firstHit, 1f, vaultLayer))) 
             {
                 print("valuable in front");

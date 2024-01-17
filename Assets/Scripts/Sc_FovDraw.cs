@@ -11,7 +11,7 @@ public class Sc_FovDraw : Editor
     
     private void OnSceneGUI()
     {
-        FieldOfView fov = (FieldOfView) target;
+        Sc_FieldOfView fov = (Sc_FieldOfView) target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.fovRadius);
 
