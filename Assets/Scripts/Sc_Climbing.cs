@@ -45,8 +45,9 @@ public class Sc_Climbing : MonoBehaviour
 
         while (time < duration) //Tant que le temps que le joueur mets a grimper (duration) est supérieur a time, le déplacement est émit
         {
+            //transform.position = Vector3.Lerp(startPosition, targetPosition, time/duration); //On fait bouger le joueur depuis la startingPosition jusqu'a la targetPosition
             transform.position = Vector3.Lerp(startPosition, targetPosition, time/duration); //On fait bouger le joueur depuis la startingPosition jusqu'a la targetPosition
-            time += Time.deltaTime;
+            time += Time.deltaTime * 0.25f;
             yield return null;
         }
         transform.position = targetPosition;
